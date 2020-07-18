@@ -13,3 +13,6 @@ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqfal6XdwNCSAnWsIA73mWBA0mdF26bKdcDB
 
 sed -e 's|overlayroot=""|overlayroot="device:dev=/dev/sda3,timeout=180"|' /etc/overlayroot.conf > tmp.txt
 cp tmp.txt /etc/overlayroot.conf
+
+rm /etc/rc.local
+reboot
