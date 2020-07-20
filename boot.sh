@@ -1,6 +1,7 @@
 #!/bin/bash
 
 apt-get -y install ssh
+apt-get -y install ansible
 
 sed -i '/efi/d' /etc/fstab
 sed -i '/home/d' /etc/fstab
@@ -13,6 +14,9 @@ echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCqfal6XdwNCSAnWsIA73mWBA0mdF26bKdcDB
 
 sed -e 's|overlayroot=""|overlayroot="device:dev=/dev/sda3,timeout=180"|' /etc/overlayroot.conf > tmp.txt
 cp tmp.txt /etc/overlayroot.conf
+
+wget https://raw.githubusercontent.com/ozorob2/late_command_pub/master/install-docker-and-nvidia.yml
+ansible-playbook install-docker-and-nvidia.yml
 
 rm /etc/rc.local
 reboot
